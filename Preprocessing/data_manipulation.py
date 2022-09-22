@@ -12,10 +12,10 @@ class DataPreparation:
             .format("csv") \
             .option("header", "true") \
             .option("inferSchema", "true") \
-            .load("calendar.csv")
+            .load("D:\Data_M5\calendar.csv")
 
-        train_data = self.spark.read.csv("train_data_modified.csv", header=True, inferSchema=True)
-        sell_price = self.spark.read.csv("sell_prices.csv", header=True, inferSchema=True)
+        train_data = self.spark.read.csv("D:\Data_M5\train_data_modified.csv", header=True, inferSchema=True)
+        sell_price = self.spark.read.csv("D:\Data_M5\sell_prices.csv", header=True, inferSchema=True)
 
         return calender, train_data, sell_price
 
