@@ -12,10 +12,10 @@ class DataPreparation:
             .format("csv") \
             .option("header", "true") \
             .option("inferSchema", "true") \
-            .load("D:\Data_M5\calendar.csv")
+            .load("D:\\Data_M5\\calendar.csv")
 
-        train_data = self.spark.read.csv("D:\Data_M5\train_data_modified.csv", header=True, inferSchema=True)
-        sell_price = self.spark.read.csv("D:\Data_M5\sell_prices.csv", header=True, inferSchema=True)
+        train_data = self.spark.read.csv("D:\\Data_M5\\train_data_modified.csv", header=True, inferSchema=True)
+        sell_price = self.spark.read.csv("D:\\Data_M5\\sell_prices.csv", header=True, inferSchema=True)
 
         return calender, train_data, sell_price
 
@@ -29,6 +29,12 @@ class DataPreparation:
     @staticmethod
     def filter_store(df, store_name):
         return df.filter(df.store_id == store_name)
+
+    @classmethod
+    def train_test_split(cls, df, year=2016):
+        train_df, test_df = df[df['year'] < year], df[df['year'] >= year]
+        return train_df, test_df
+
         
 
 
