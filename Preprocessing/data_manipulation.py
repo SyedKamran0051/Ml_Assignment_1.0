@@ -34,6 +34,11 @@ class DataPreparation:
     def train_test_split(cls, df, year=2016):
         train_df, test_df = df[df['year'] < year], df[df['year'] >= year]
         return train_df, test_df
+    
+    @classmethod
+    def fill_na_value(cls, df):
+        df = df.fillna(value=0)
+        return df
 
         
 
