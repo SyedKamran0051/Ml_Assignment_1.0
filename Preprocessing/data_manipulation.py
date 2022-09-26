@@ -40,10 +40,4 @@ class DataPreparation:
         df = df.fillna(value=0)
         return df
 
-        
-
-
-
-
-
-
+    

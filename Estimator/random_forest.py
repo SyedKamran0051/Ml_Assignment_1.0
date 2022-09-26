@@ -30,17 +30,10 @@ class RandomForest(Estimator, HasPredictionCol, HasLabelCol, HasFeaturesCol):
     def trainModel(self, train, validation, params):
         features = self.getFeaturesCol()
         labels = self.getLabelCol()
-
-        if params is None:
-            rf = RandomForestRegressor(featuresCol=features, labelCol=labels)
-        else:
-            rf = RandomForestRegressor(featuresCol=features, labelCol=labels, **params)
-
+    
+        rf = RandomForestRegressor(featuresCol=features, labelCol=labels)
         rf = rf.fit(train)
         predictions = rf.transform(validation)
-        mape = MAPE(labelCol="sales", predictionCol=self.getPredictionCol())
-        score = mape.evaluate(predictions)
-        print("score:", score)
         return predictions
     
     def _fit(self, df):
@@ -48,9 +41,9 @@ class RandomForest(Estimator, HasPredictionCol, HasLabelCol, HasFeaturesCol):
         labels = self.getLabelCol()
 
         df_1 = DataPreparation()
-        train, test = df_1.train_test_split(df_1, 2015)
+        train_df, validation_df = df_1.train_test_split(df_1, 2015)
 
-        self.trainModel(train, test, None)
+        self.trainModel(train_df, validation_df, None)
         rf = RandomForestRegressor(featuresCol=features, labelCol=labels)
-        return rf.fit(train)
+        return rf.fit(train_df)
 
