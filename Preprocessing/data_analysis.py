@@ -21,7 +21,6 @@ if __name__ == "__main__":
     sell_price = spark.read.csv("D:\Spark_project\sell_prices.csv", header=True, inferSchema=True)
     submission_file = spark.read.csv("D:\Spark_project\sample_submission.csv", header=True, inferSchema=True)
 
-    # train_data.describe().show()
     train_data.show()
     sell_price.show()
     submission_file.show()
@@ -30,14 +29,6 @@ if __name__ == "__main__":
     df = data.get_data()
 
     df.show()
-
-    #aggregate = AggregateData(columns=["store_id", "dept_id", "year", "month"],
-    #                          expressions={"sales": "sum",
-    #                                       "sell_price": "avg",
-    #                                       "event_name_1": "count",
-    #                                       "event_name_2": "count",
-    #                                      "snap_WI": "sum"}
-    #                          )
 
 
 

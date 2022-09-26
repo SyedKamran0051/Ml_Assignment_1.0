@@ -1,3 +1,7 @@
+#############################################
+# Program to take Log of sales and sell_price per unit  
+###############################################
+
 from pyspark.ml import Transformer
 from pyspark.sql import DataFrame
 from pyspark.ml.param.shared import HasInputCols

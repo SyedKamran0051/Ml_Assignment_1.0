@@ -1,6 +1,6 @@
-######################################################
-# Data Aggregation Transformer
-#####################################################
+#######################################################
+  ### DATA AGGREGATION DEPARTMENT AND STORE LEVEL ###
+#######################################################
 
 from pyspark.ml import Transformer
 from pyspark.ml.param import Param, Params, TypeConverters
@@ -45,7 +45,6 @@ class AggregateData(Transformer):
         group_by_column = self.getColumns()
         aggregate_expression = dict(self.getExpression())
         df_agg = df.groupBy(group_by_column).agg(aggregate_expression)
-        # for renaming the column name after aggregation
         for key, opr in aggregate_expression.items():
             name = "{}({})".format(opr, key)
             df_agg = df_agg.withColumnRenamed(name, key)

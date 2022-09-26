@@ -1,6 +1,6 @@
-######################################################
-# Data Aggregation Transformer
-#####################################################
+####################################################################
+# Anti Log tranformer to convert sales back to their original values 
+####################################################################
 
 from pyspark.ml import Transformer
 from pyspark.sql import DataFrame
