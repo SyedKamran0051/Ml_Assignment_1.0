@@ -3,7 +3,6 @@ from pyspark.sql import DataFrame
 from pyspark.ml.param.shared import HasLabelCol, HasPredictionCol, HasFeaturesCol
 from pyspark.ml.param import Param, Params, TypeConverters
 from pyspark import keyword_only
-import pyspark.sql.functions as F
 from pyspark.ml import Model
 from pyspark.ml.regression import RandomForestRegressor
 
@@ -27,23 +26,12 @@ class RandomForest(Estimator, HasPredictionCol, HasLabelCol, HasFeaturesCol):
         kwargs = self._input_kwargs
         return self._set(**kwargs)
 
-    def trainModel(self, train, validation, params):
+    def _fit(self, df:DataFrame):
         features = self.getFeaturesCol()
         labels = self.getLabelCol()
-    
         rf = RandomForestRegressor(featuresCol=features, labelCol=labels)
+        data = DataPreparation()
+        train, validation = data.train_test_split(df, 2015)
         rf = rf.fit(train)
         predictions = rf.transform(validation)
         return predictions
-    
-    def _fit(self, df):
-        features = self.getFeaturesCol()
-        labels = self.getLabelCol()
-
-        df_1 = DataPreparation()
-        train_df, validation_df = df_1.train_test_split(df_1, 2015)
-
-        self.trainModel(train_df, validation_df, None)
-        rf = RandomForestRegressor(featuresCol=features, labelCol=labels)
-        return rf.fit(train_df)
-

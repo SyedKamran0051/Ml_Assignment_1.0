@@ -5,7 +5,7 @@
 from pyspark import keyword_only
 from pyspark.ml import Transformer
 from pyspark.ml.param import Param, Params, TypeConverters
-from pyspark.sql import functions as F
+from pyspark.sql import functions as Function
 
 
 class NegativeSales(Transformer):
@@ -33,6 +33,6 @@ class NegativeSales(Transformer):
 
     def _transform(self, df):
         column = self.getColumn()
-        df.withColumn(column, F.when(df[column] < 0, 0).when(F.col(column).isNull(), 0) \
-            .otherwise(F.col(column)))
+        df.withColumn(column, Function.when(df[column] < 0, 0).when(Function.col(column).isNull(), 0) \
+            .otherwise(Function.col(column)))
         return df

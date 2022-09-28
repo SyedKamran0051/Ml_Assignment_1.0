@@ -7,7 +7,7 @@ from pyspark.sql import DataFrame
 from pyspark.ml.param.shared import HasInputCols
 from pyspark.ml.param import Param, Params, TypeConverters
 from pyspark import keyword_only
-import pyspark.sql.functions as F
+import pyspark.sql.functions as Function
 
 class antiLog(Transformer, HasInputCols):
     @keyword_only
@@ -28,6 +28,5 @@ class antiLog(Transformer, HasInputCols):
     def _transform(self, df:DataFrame):
         columns = self.getInputCols()
         for column in columns:
-            df = df.withColumn(column, F.exp(df[column]))
-        # for renaming the column name after aggregation
+            df = df.withColumn(column, Function.exp(df[column]))
         return df
