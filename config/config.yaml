@@ -1,0 +1,5 @@
+# data paths 
+data_directory: D:\Data_M5
+calender_path: calendar.csv
+sell_price_path: sell_prices.csv
+training_path: train_data_modified.csv
