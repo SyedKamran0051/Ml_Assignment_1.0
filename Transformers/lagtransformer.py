@@ -30,7 +30,7 @@ class Lags(Transformer):
     target = Param(
         Params._dummy(),
         "target",
-        "target variable on which lags needs to be added",
+        "target variable on which lags added",
         typeConverter=TypeConverters.toString,
     )
 
