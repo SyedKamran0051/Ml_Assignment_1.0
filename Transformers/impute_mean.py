@@ -1,7 +1,3 @@
-###############################
-##### Average Sell Price ######
-###############################
-
 from pyspark import keyword_only
 from pyspark.ml import Transformer
 
@@ -19,15 +15,10 @@ class ImputePrice(Transformer):
         return self._set(**kwargs)
 
     def _transform(self, df):
-        id = "id"
-        selling_price ="sell_price"
-        aggregating_id = "agg_id"
-        avg_selling_price = "avg(sell_price)"
-
-        df_aggregated = df.groupBy(id).avg(selling_price)
-        df_aggregated = df_aggregated.withColumnRenamed(id, aggregating_id)
-        df = df.join(df_aggregated, df[id] == df_aggregated[aggregating_id], "inner")
-        df = df.drop(aggregating_id, selling_price)
-        df = df.withColumnRenamed(avg_selling_price, selling_price)
+        df_aggregated = df.groupBy(["id"]).avg("sell_price")
+        df_aggregated = df_aggregated.withColumnRenamed("id", "agg_id")
+        df = df.join(df_aggregated, df["id"] == df_aggregated["agg_id"], "inner")
+        df = df.drop("agg_id", "sell_price")
+        df = df.withColumnRenamed("avg(sell_price)", "sell_price")
         return df
 

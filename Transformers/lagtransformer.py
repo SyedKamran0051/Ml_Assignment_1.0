@@ -1,8 +1,3 @@
-#####################################################
-# Program to take Lag of sales 
-######################################################
-
-
 from pyspark import keyword_only
 from pyspark.ml import Transformer
 from pyspark.ml.param import Param, Params, TypeConverters
@@ -28,14 +23,14 @@ class Lags(Transformer):
     lags = Param(
         Params._dummy(),
         "lags",
-        "lag range",
+        "ranges for lags",
         typeConverter=TypeConverters.toListInt,
     )
 
     target = Param(
         Params._dummy(),
         "target",
-        "target variable on which lag is added",
+        "target variable on which lags needs to be added",
         typeConverter=TypeConverters.toString,
     )
 

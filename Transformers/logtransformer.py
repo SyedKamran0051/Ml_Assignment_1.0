@@ -1,13 +1,9 @@
-#############################################
-# Program to take Log of sales and sell_price per unit  
-###############################################
-
 from pyspark.ml import Transformer
 from pyspark.sql import DataFrame
 from pyspark.ml.param.shared import HasInputCols
 from pyspark.ml.param import Param, Params, TypeConverters
 from pyspark import keyword_only
-import pyspark.sql.functions as Function
+import pyspark.sql.functions as F
 
 class Log(Transformer, HasInputCols):
     @keyword_only
@@ -28,7 +24,7 @@ class Log(Transformer, HasInputCols):
     def _transform(self, df:DataFrame):
         input_columns = self.getInputCols()
         for column in input_columns:
-            df = df.withColumn(column, Function.log(df[column]))
+            df = df.withColumn(column, F.log(df[column]))
         return df
 
         

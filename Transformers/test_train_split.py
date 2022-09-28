@@ -1,11 +1,7 @@
-###########################################
-####### Test_Train_Split Transformer ######
-###########################################
-
 from pyspark.ml import Transformer
 from pyspark.ml.param import Param, Params, TypeConverters
 from pyspark import keyword_only
-from pyspark.sql import DataFrame
+
 class Split(Transformer):
 
     year = Param(
@@ -30,7 +26,7 @@ class Split(Transformer):
     def getsplitvalue(self):
         return self.getOrDefault(self.year)
 
-    def _transform(self, df:DataFrame, year=2015):
+    def _transform(self, df, year=2016):
         year = self.getsplitvalue()
         df_train, df_test = df[df['year']<year], df[df['year']>=year]
         return df_train, df_test
