@@ -23,6 +23,8 @@ data_train_path = os.path.join(config["data_directory"], config["training_path"]
 data_calender_path = os.path.join(config["data_directory"], config["calender_path"])
 data_sell_price_path = os.path.join(config["data_directory"], config["sell_price_path"])
 print(data_calender_path)
+print(data_sell_price_path)
+print(data_train_path)
 
 class DataPreparation:
 
@@ -50,6 +52,7 @@ class DataPreparation:
     @staticmethod
     def filter_store(df, store_name):
         return df.filter(df.store_id == store_name)
+        
     @classmethod
     def train_test_split(cls, df, year=2016):
         train_df, test_df = df[df['year'] < year], df[df['year'] >= year]

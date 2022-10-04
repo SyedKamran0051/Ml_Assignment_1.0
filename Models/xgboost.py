@@ -49,7 +49,7 @@ class XGBoostModel(Model, HasLabelCol, HasInputCols, HasPredictionCol):
         pred = self.getPredictionCol()
         model = self.getModel()
 
-        X = df[featureCols].toPandas()
+        X = df.select(featureCols).toPandas()
         y = df.select(labelCol).toPandas()
 
         prediction = model.predict(X)

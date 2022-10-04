@@ -45,7 +45,7 @@ class AggregateData(Transformer):
         group_by_column = self.getColumns()
         aggregate_expression = dict(self.getExpression())
         df_agg = df.groupBy(group_by_column).agg(aggregate_expression)
-        for key, opr in aggregate_expression.items():
-            name = "{}({})".format(opr, key)
+        for key, aggregation_operation in aggregate_expression.items():
+            name = "{}({})".format(aggregation_operation, key)
             df_agg = df_agg.withColumnRenamed(name, key)
         return df_agg

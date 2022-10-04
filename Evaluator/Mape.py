@@ -30,3 +30,4 @@ class MAPE(Evaluator, HasLabelCol, HasPredictionCol):
         predictionCol = self.getPredictionCol()
         score = df.select(mean(abs((df[labelCol] - df[predictionCol]) / df[labelCol])))
         return score.first()[0]
+        
