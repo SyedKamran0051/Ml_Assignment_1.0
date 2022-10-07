@@ -23,7 +23,7 @@ class XGBoost(Estimator, HasPredictionCol, HasLabelCol, HasInputCols):
 
     # define hyperopt search space
     search_space ={
-    'max_depth':  hp.choice('max_depth', np.arange(1, 30, dtype=int))                                 # depth of trees (preference is for shallow trees or even stumps (max_depth=1))
+    'max_depth':  hp.choice('max_depth', np.arange(1, 30, dtype=int))                 # depth of trees (preference is for shallow trees or even stumps (max_depth=1))
     ,'learning_rate' : hp.loguniform('learning_rate', np.log(0.05), np.log(0.40))     # learning rate for XGBoost
     ,'gamma': hp.quniform('gamma', 0.0, 1.0, 0.001)                                   # minimum loss reduction required to make a further partition on a leaf node
     ,'min_child_weight' : hp.quniform('min_child_weight', 1, 30, 1)                   # minimum number of instances per node
