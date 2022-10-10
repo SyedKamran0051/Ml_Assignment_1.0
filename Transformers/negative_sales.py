@@ -30,5 +30,5 @@ class NegativeSales(Transformer):
 
     def _transform(self, df):
         column = self.getColumn()
-        df.withColumn(column, Function.when(df[column] < 0, 0).when(Function.col(column).isNull(), 0).otherwise(Function.col(column)))
+        df = df.withColumn(column, Function.when(df[column] < 0, 0).when(Function.col(column).isNull(), 0).otherwise(Function.col(column)))
         return df

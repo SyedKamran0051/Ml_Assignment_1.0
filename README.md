@@ -32,4 +32,4 @@ Model will generate prediction on test data.
 Write custom Spark MLIB evaluator for MAPE evaluation matrix. You need to write unit tests for your evaluator as well.
 
 5.	Model Selection
-Compare the results of all available models using MAPE on test data. You need to generate the sales forecast for next 12 months using the best performing models. The forecast should be stored as csv and should have store id, month, year, original sales, forecast columns. 
+Compare the results of all available models using MAPE on test data. You need to generate the sales forecast for next 24 months using the best performing models. The forecast should be stored as csv and should have store id, month, year, original sales, forecast columns. 
