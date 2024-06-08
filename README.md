@@ -1,5 +1,3 @@
-# Forecasting Sales
-
 Problem Statement:
 	Generate monthly sales forecast of each store for a given department on M5 store-department data. You are required to use Spark MLIB library for building the ML pipeline. The pipeline should have following modules: 
 
@@ -24,9 +22,6 @@ Estimator will do:
 •	Hyper parameter tunning using Hyperopt 
 •	Re-training using best parameters
 Model will generate prediction on test data.
-
-
-
 
 4.	Evaluator
 Write custom Spark MLIB evaluator for MAPE evaluation matrix. You need to write unit tests for your evaluator as well.
